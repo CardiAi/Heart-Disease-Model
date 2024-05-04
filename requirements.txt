@@ -1,5 +1,4 @@
 gunicorn
-os
 numpy
 flask
 pandas 
