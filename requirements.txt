@@ -1,0 +1,8 @@
+guncorn
+os
+numpy
+flask
+pandas 
+scikit-learn
+xgboost
+joblib
