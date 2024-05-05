@@ -1,35 +1,8 @@
 from flask import Flask, request, jsonify
-import pandas as pd
-import numpy as np
-import joblib
-
+from model import model_predict
 
 
 app = Flask(__name__)
-
-
-
-model = joblib.load('heart_disease_pipline.pkl')
-
-
-    
-
-
-columns = ['age',
- 'sex',
- 'cp',
- 'trestbps',
- 'chol',
- 'fbs',
- 'restecg',
- 'thalch',
- 'exang',
- 'oldpeak',
- 'slope',
- 'ca',
- 'thal']
-
-
 
 @app.route('/')
 def home():
@@ -37,22 +10,14 @@ def home():
 
 @app.route('/predict', methods=['POST'])
 def predict():
-
     data = request.json
-    print(data)
-
-    
-    for column in columns:
-        if column not in data:
-            data[column] = np.nan
-
-    input_df = pd.DataFrame(data, index=[0])
 
     # Make predictions
-    prediction = model.predict(input_df)
+    prediction = model_predict(data)
 
     # Return prediction as JSON response
-    return jsonify({'prediction': prediction.tolist()[0]})
+    return jsonify({'prediction': prediction})
 
 if __name__ == '__main__':
     app.run(debug=True)
+    
