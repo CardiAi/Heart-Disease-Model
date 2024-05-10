@@ -12,11 +12,13 @@ def home():
 def predict():
     data = request.json
 
-    # Make predictions
-    prediction = model_predict(data)
-
-    # Return prediction as JSON response
-    return jsonify({'prediction': prediction})
+    try:
+        # Make predictions
+        prediction = model_predict(data)
+        # Return prediction as JSON response
+        return jsonify({'prediction': prediction})
+    except Exception as e:
+        return jsonify({'error': str(e)})
 
 if __name__ == '__main__':
     app.run(debug=True)
