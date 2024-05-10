@@ -3,5 +3,5 @@ numpy
 flask
 pandas 
 scikit-learn
-xgboost
+catboost
 joblib
