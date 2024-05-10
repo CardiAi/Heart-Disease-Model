@@ -9,12 +9,8 @@ model = joblib.load('heart_disease_pipline.pkl')
 
 
 def model_predict(data):
-
-    
-
-    input_df = pd.DataFrame(data, index=[0])
     print(data)
-
+    input_df = pd.DataFrame(data, index=[0])
     prediction = model.predict(input_df)
 
     return prediction.tolist()[0][0]
